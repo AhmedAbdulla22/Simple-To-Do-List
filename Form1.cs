@@ -17,9 +17,11 @@ namespace Simple_To_Do_List
             InitializeComponent();
         }
 
+        
+
         private void tbAddItems_Enter(object sender, EventArgs e)
         {
-            if (tbAddItems.Text == "Type & Enter to Add Items")
+            if (tbAddItems.Text == "Type & Enter to Add Tasks")
             {
             tbAddItems.Text = "";
             }
@@ -30,7 +32,7 @@ namespace Simple_To_Do_List
         {
             if (tbAddItems.Text == "")
             {
-            tbAddItems.Text = "Type & Enter to Add Items";
+            tbAddItems.Text = "Type & Enter to Add Tasks";
             }
         }
 
@@ -42,5 +44,23 @@ namespace Simple_To_Do_List
                 tbAddItems.Text = string.Empty;
             }
         }
+
+        private void clbToDoList_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            int prevSelectedItem = clbToDoList.SelectedIndex;
+            if (prevSelectedItem != -1)
+            {
+            clbCompletedTasks.Items.Add(clbToDoList.SelectedItem.ToString());
+
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                clbToDoList.Items.RemoveAt(prevSelectedItem);
+                });
+                
+            }
+
+        }
+
+
     }
 }
