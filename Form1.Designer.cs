@@ -28,13 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.clbToDoList = new System.Windows.Forms.CheckedListBox();
             this.tbAddItems = new System.Windows.Forms.TextBox();
             this.clbCompletedTasks = new System.Windows.Forms.CheckedListBox();
+            this.cmsCheckBoxList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCheckBoxList.SuspendLayout();
             this.SuspendLayout();
             // 
             // clbToDoList
             // 
+            this.clbToDoList.ContextMenuStrip = this.cmsCheckBoxList;
             this.clbToDoList.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clbToDoList.FormattingEnabled = true;
             this.clbToDoList.Items.AddRange(new object[] {
@@ -62,12 +68,35 @@
             // 
             // clbCompletedTasks
             // 
+            this.clbCompletedTasks.ContextMenuStrip = this.cmsCheckBoxList;
             this.clbCompletedTasks.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clbCompletedTasks.FormattingEnabled = true;
             this.clbCompletedTasks.Location = new System.Drawing.Point(12, 325);
             this.clbCompletedTasks.Name = "clbCompletedTasks";
             this.clbCompletedTasks.Size = new System.Drawing.Size(349, 109);
             this.clbCompletedTasks.TabIndex = 2;
+            this.clbCompletedTasks.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbCompletedTasks_ItemCheck);
+            // 
+            // cmsCheckBoxList
+            // 
+            this.cmsCheckBoxList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.cmsCheckBoxList.Name = "cmsCheckBoxList";
+            this.cmsCheckBoxList.Size = new System.Drawing.Size(181, 70);
+            // 
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renameToolStripMenuItem.Text = "Rename";
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -83,6 +112,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.cmsCheckBoxList.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,6 +123,9 @@
         private System.Windows.Forms.CheckedListBox clbToDoList;
         private System.Windows.Forms.TextBox tbAddItems;
         private System.Windows.Forms.CheckedListBox clbCompletedTasks;
+        private System.Windows.Forms.ContextMenuStrip cmsCheckBoxList;
+        private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -62,6 +63,33 @@ namespace Simple_To_Do_List
 
         }
 
+        private void clbCompletedTasks_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            int prevSelectedItem = clbCompletedTasks.SelectedIndex;
+            if (prevSelectedItem != -1)
+            {
+                clbToDoList.Items.Add(clbCompletedTasks.SelectedItem.ToString());
 
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    clbCompletedTasks.Items.RemoveAt(prevSelectedItem);
+                });
+
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (clbCompletedTasks.SelectedIndex != -1)
+            {
+            clbCompletedTasks.Items.Remove(clbCompletedTasks.SelectedItem);
+            }
+            else if(clbToDoList.SelectedIndex != -1)
+            {
+                clbToDoList.Items.Remove(clbToDoList.SelectedItem);
+            }
+        }
+
+        
     }
 }
