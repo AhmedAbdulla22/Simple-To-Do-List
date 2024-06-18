@@ -51,7 +51,8 @@ namespace Simple_To_Do_List
             if (prevSelectedItem != -1)
             {
             clbCompletedTasks.Items.Add(clbToDoList.SelectedItem.ToString());
-
+                clbCompletedTasks.SetItemChecked(clbCompletedTasks.Items.Count - 1,true);
+            
                 this.BeginInvoke((MethodInvoker)delegate
                 {
                 clbToDoList.Items.RemoveAt(prevSelectedItem);
