@@ -90,6 +90,10 @@ namespace Simple_To_Do_List
             }
         }
 
-        
+        private void clearAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clbToDoList.Items.Clear();
+            clbCompletedTasks.Items.Clear();
+        }
     }
 }

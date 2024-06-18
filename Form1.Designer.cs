@@ -30,34 +30,54 @@
         {
             this.components = new System.ComponentModel.Container();
             this.clbToDoList = new System.Windows.Forms.CheckedListBox();
+            this.cmsCheckBoxList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbAddItems = new System.Windows.Forms.TextBox();
             this.clbCompletedTasks = new System.Windows.Forms.CheckedListBox();
-            this.cmsCheckBoxList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.cmsCheckBoxList.SuspendLayout();
             this.SuspendLayout();
             // 
             // clbToDoList
             // 
+            this.clbToDoList.BackColor = System.Drawing.Color.WhiteSmoke;
             this.clbToDoList.ContextMenuStrip = this.cmsCheckBoxList;
             this.clbToDoList.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clbToDoList.FormattingEnabled = true;
-            this.clbToDoList.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "F"});
-            this.clbToDoList.Location = new System.Drawing.Point(12, 84);
+            this.clbToDoList.Location = new System.Drawing.Point(12, 73);
             this.clbToDoList.Name = "clbToDoList";
             this.clbToDoList.Size = new System.Drawing.Size(349, 235);
             this.clbToDoList.TabIndex = 0;
             this.clbToDoList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbToDoList_ItemCheck);
             // 
+            // cmsCheckBoxList
+            // 
+            this.cmsCheckBoxList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeToolStripMenuItem,
+            this.clearAllToolStripMenuItem});
+            this.cmsCheckBoxList.Name = "cmsCheckBoxList";
+            this.cmsCheckBoxList.Size = new System.Drawing.Size(119, 48);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
+            // clearAllToolStripMenuItem
+            // 
+            this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearAllToolStripMenuItem.Text = "Clear All";
+            this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
+            // 
             // tbAddItems
             // 
-            this.tbAddItems.Location = new System.Drawing.Point(12, 58);
+            this.tbAddItems.Location = new System.Drawing.Point(12, 15);
             this.tbAddItems.Name = "tbAddItems";
             this.tbAddItems.Size = new System.Drawing.Size(349, 20);
             this.tbAddItems.TabIndex = 1;
@@ -68,42 +88,44 @@
             // 
             // clbCompletedTasks
             // 
+            this.clbCompletedTasks.BackColor = System.Drawing.Color.WhiteSmoke;
             this.clbCompletedTasks.ContextMenuStrip = this.cmsCheckBoxList;
             this.clbCompletedTasks.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clbCompletedTasks.FormattingEnabled = true;
-            this.clbCompletedTasks.Location = new System.Drawing.Point(12, 325);
+            this.clbCompletedTasks.Location = new System.Drawing.Point(12, 352);
             this.clbCompletedTasks.Name = "clbCompletedTasks";
-            this.clbCompletedTasks.Size = new System.Drawing.Size(349, 109);
+            this.clbCompletedTasks.Size = new System.Drawing.Size(349, 151);
             this.clbCompletedTasks.TabIndex = 2;
             this.clbCompletedTasks.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbCompletedTasks_ItemCheck);
             // 
-            // cmsCheckBoxList
+            // label1
             // 
-            this.cmsCheckBoxList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renameToolStripMenuItem,
-            this.removeToolStripMenuItem});
-            this.cmsCheckBoxList.Name = "cmsCheckBoxList";
-            this.cmsCheckBoxList.Size = new System.Drawing.Size(181, 70);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(130, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 22);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Tasks To Do:";
             // 
-            // renameToolStripMenuItem
+            // label2
             // 
-            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.renameToolStripMenuItem.Text = "Rename";
-            // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(108, 320);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(163, 22);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Tasks Completed:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(373, 524);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.clbCompletedTasks);
             this.Controls.Add(this.tbAddItems);
             this.Controls.Add(this.clbToDoList);
@@ -124,8 +146,11 @@
         private System.Windows.Forms.TextBox tbAddItems;
         private System.Windows.Forms.CheckedListBox clbCompletedTasks;
         private System.Windows.Forms.ContextMenuStrip cmsCheckBoxList;
-        private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem clearAllToolStripMenuItem;
     }
 }
 
